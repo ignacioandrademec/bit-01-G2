@@ -34,7 +34,7 @@ let estudiantes = [
 
 function mostrarEstudiantes (arreglo){
     arreglo.forEach(function(alumno){
-    console.log("Impresion de listado de Estudiantes", alumno);
+    console.log("2.1) Impresion de listado de Estudiantes", alumno);
 });
 }
 
@@ -47,7 +47,7 @@ let calificacionesPorEstudiante = estudiantes.map(function(estudiante){
     return estudiante.calificaciones;
 })
 
-console.log("Array de Calificaciones por Estudiante: ", calificacionesPorEstudiante);
+console.log("2.2.1) Array de Calificaciones por Estudiante: ", calificacionesPorEstudiante);
 
 // ? EJERCICIO 2.2.2 - creando un array total de calificaciones:
 
@@ -61,7 +61,7 @@ let calificaciones5 = estudiantes[4].calificaciones;
 
 let calificaciones = calificaciones1.concat(calificaciones2, calificaciones3, calificaciones4, calificaciones5);
 
-console.log("Calificaciones totales: ", calificaciones);
+console.log("2.2.3) Calificaciones totales: ", calificaciones);
 
 
 // ? EJERCICIO 2.2.4 Procedemos a realizar la función para recibir calificaciones con el método reduce:
@@ -70,11 +70,73 @@ function calcularPromedio (array){
     let sumaCalificaciones = array.reduce(function(acomulador, puntuacionActual){
     return acomulador + puntuacionActual;
 })
-    let promedio = sumaCalificaciones / array.length;
+    let promedio = Math.round(sumaCalificaciones / array.length);
 
-console.log("La suma de las calificaciones es: ", sumaCalificaciones);
-console.log("El promedio de las calificaciones es: ", promedio);
+console.log("2.2.4) La suma de las calificaciones es: ", sumaCalificaciones);
+console.log("2.2.4) El promedio de las calificaciones es: ", promedio);
 }
 
 calcularPromedio(calificaciones);
+
+// ? ----------------------------------------------- EJERCICIO 2.3 - obtenerMejorCalificación
+
+function obtenerMejorCalificacion (array){
+    let maximaCalificacion = Math.max(...array);
+    console.log(`2.3) La peor calificación en el curso fue de ${maximaCalificacion} sobre 10`);
+}
+
+obtenerMejorCalificacion(calificaciones);
+
+
+// ? ----------------------------------------------- EJERCICIO 2.4 - obtenerPeorCalificación
+
+function obtenerPeorCalificacion (array){
+    let menorCalificacion = Math.min(...array);
+    console.log(`2.4) La peor calificación en el curso fue de ${menorCalificacion} sobre 10`);
+}
+
+obtenerPeorCalificacion(calificaciones);
+
+
+// ? -------------------------------------------------- EJERCICIO 2.5 - agregarCalificación
+
+
+function agregarCalificacion (nombreEstudiante, nuevaCalificacion){
+    let indexEstudiante = estudiantes.findIndex(function(name){
+        return name.nombre === nombreEstudiante;
+    });
+
+    if (indexEstudiante === 0) {
+        estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
+        console.log(`2.5) Calificación agregada a ${estudiantes[0].nombre} exitosamente`);
+    }else {
+        console.log(`2.5) El estudiante ${estudiantes[0].nombre} No fue encontrado en el sistema`)
+    }
+    // if (indexEstudiante === 1) {
+    //     estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
+    //     console.log(`Calificación agregada a ${estudiantes[1].nombre} exitosamente`);
+    // }else {
+    //     console.log(`El estudiante ${estudiantes[1].nombre} No fue encontrado en el sistema`)
+    // }
+    // if (indexEstudiante === 2) {
+    //     estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
+    //     console.log(`Calificación agregada a ${estudiantes[2].nombre} exitosamente`);
+    // }else {
+    //     console.log(`El estudiante ${estudiantes[2].nombre} No fue encontrado en el sistema`)
+    // }
+    // if (indexEstudiante === 3) {
+    //     estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
+    //     console.log(`Calificación agregada a ${estudiantes[3].nombre} exitosamente`);
+    // }else {
+    //     console.log(`El estudiante ${estudiantes[3].nombre} No fue encontrado en el sistema`)
+    // }
+    // if (indexEstudiante === 4) {
+    //     estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
+    //     console.log(`Calificación agregada a ${estudiantes[4].nombre} exitosamente`);
+    // }else {
+    //     console.log(`El estudiante ${estudiantes[4].nombre} No fue encontrado en el sistema`)
+    // }
+}
+
+agregarCalificacion ("Jose Andrade",9.5)
 

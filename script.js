@@ -102,41 +102,40 @@ obtenerPeorCalificacion(calificaciones);
 
 
 function agregarCalificacion (nombreEstudiante, nuevaCalificacion){
-    let indexEstudiante = estudiantes.findIndex(function(name){
+    let alumno = estudiantes.find(function(name){
         return name.nombre === nombreEstudiante;
     });
 
-    if (indexEstudiante === 0) {
-        estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
-        console.log(`2.5) Calificación agregada a ${estudiantes[0].nombre} exitosamente`);
+    if (alumno) {
+        alumno.calificaciones.push(nuevaCalificacion);
+        console.log(`2.5) Calificación agregada a ${alumno.nombre} exitosamente`);
     }else {
-        console.log(`2.5) El estudiante ${estudiantes[0].nombre} No fue encontrado en el sistema`)
+        console.log(`2.5) El estudiante ${nombreEstudiante} No fue encontrado en el sistema`)
     }
-    // if (indexEstudiante === 1) {
-    //     estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
-    //     console.log(`Calificación agregada a ${estudiantes[1].nombre} exitosamente`);
-    // }else {
-    //     console.log(`El estudiante ${estudiantes[1].nombre} No fue encontrado en el sistema`)
-    // }
-    // if (indexEstudiante === 2) {
-    //     estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
-    //     console.log(`Calificación agregada a ${estudiantes[2].nombre} exitosamente`);
-    // }else {
-    //     console.log(`El estudiante ${estudiantes[2].nombre} No fue encontrado en el sistema`)
-    // }
-    // if (indexEstudiante === 3) {
-    //     estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
-    //     console.log(`Calificación agregada a ${estudiantes[3].nombre} exitosamente`);
-    // }else {
-    //     console.log(`El estudiante ${estudiantes[3].nombre} No fue encontrado en el sistema`)
-    // }
-    // if (indexEstudiante === 4) {
-    //     estudiantes[indexEstudiante].calificaciones.push(nuevaCalificacion);
-    //     console.log(`Calificación agregada a ${estudiantes[4].nombre} exitosamente`);
-    // }else {
-    //     console.log(`El estudiante ${estudiantes[4].nombre} No fue encontrado en el sistema`)
-    // }
 }
 
 agregarCalificacion ("Jose Andrade",9.5)
 
+// ? ---------------------------------------------- EJERCICIO 2.6 - eliminarultimaCalificación
+
+function eliminarultimaCalificacion (nombreEstudiante){
+    let alumno = estudiantes.find(function(name){
+        return name.nombre === nombreEstudiante;
+    });
+
+    if (alumno || alumno != estudiantes.nombre) {
+        alumno.calificaciones.pop();
+        console.log(`2.6) Calificación del alumno ${alumno.nombre} eliminada exitosamente`);
+    }else {
+        console.log(`2.6) El estudiante ${nombreEstudiante} No fue encontrado en el sistema`)
+    }
+}
+
+eliminarultimaCalificacion ("Peter Parker")
+
+
+
+// pop()  /* Elimina el ultimo elemento del Array */
+
+// let quitarUltimoJuguete = misJuguetes.pop();
+// console.log("Ahora estos son todos mis juguetes son:", misJuguetes);

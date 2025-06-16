@@ -12,15 +12,15 @@ let estudiantes = [
     },
     {
         nombre: "Aurelio Cheverony",
-        calificaciones: [7.8, 9.1, 6.4, 8.5, 9.9, 7.2, 6.8, 9.0, 8.3, 7.6]
+        calificaciones: [7.8, 9.1, 6.4, 8.5, 2.6, 7.2, 6.8, 9.0, 8.3, 7.6]
     },
     {
         nombre: "Amadeus Mozart",
-        calificaciones: [8.9, 7.7, 6.3, 9.8, 7.0, 8.4, 6.9, 9.2, 7.3, 8.1]
+        calificaciones: [8.9, 7.7, 2.3, 9.8, 3.0, 1.4, 1.8, 9.2, 1.3, 8.1]
     },
     {
         nombre: "Clark Kent",
-        calificaciones: [9.5, 6.8, 8.7, 7.9, 9.3, 8.0, 6.6, 7.1, 9.0, 8.2]
+        calificaciones: [9.5, 1.8, 8.7, 5.9, 7.2, 4.0, 0.6, 7.1, 9.0, 1.2]
     },
     {
         nombre: "Peter Parker",
@@ -123,7 +123,7 @@ function eliminarultimaCalificacion (nombreEstudiante){
         return name.nombre === nombreEstudiante;
     });
 
-    if (alumno || alumno != estudiantes.nombre) {
+    if (alumno || alumno !== estudiantes.nombre) {
         alumno.calificaciones.pop();
         console.log(`2.6) Calificación del alumno ${alumno.nombre} eliminada exitosamente`);
     }else {
@@ -133,9 +133,39 @@ function eliminarultimaCalificacion (nombreEstudiante){
 
 eliminarultimaCalificacion ("Peter Parker")
 
+// ? -------------------------------------------- EJERCICIO 2.7 - filtrarEstudiantesAprobados
+
+let promedioMinimo = 6
+
+function filtrarEstudiantesAprobados(promedioMinimo) {
+    let filtro = estudiantes.filter(function(estudiante) {
+        let suma = 0;
+        for (let i = 0; i < estudiante.calificaciones.length; i++) {
+            suma += estudiante.calificaciones[i];
+        }
+
+        let promedio = suma / estudiante.calificaciones.length;
+        return promedio >= promedioMinimo;
+    });
+
+    if (filtro.length >= 1) {
+        console.log("2.7) Los estudiantes Aprobados son:", filtro);
+    } else {
+        console.log("2.7) No hay estudiantes aprobados.");
+    }
+}
+
+filtrarEstudiantesAprobados(promedioMinimo)
+
+// ? -------------------------------------------- EJERCICIO 2.8 - ordenarEstudiantesporNombre
+
+function ordenarEstudiantesporNombre (){
+    estudiantes.sort(function(a,b){
+        return a-b;
+    })
+    console.log("Lista de Alumnos Alfabeticamente" ,estudiantes);
+}
+
+ordenarEstudiantesporNombre();
 
 
-// pop()  /* Elimina el ultimo elemento del Array */
-
-// let quitarUltimoJuguete = misJuguetes.pop();
-// console.log("Ahora estos son todos mis juguetes son:", misJuguetes);

@@ -83,6 +83,8 @@ calcularPromedio(calificaciones);
 function obtenerMejorCalificacion (array){
     let maximaCalificacion = Math.max(...array);
     console.log(`2.3) La peor calificación en el curso fue de ${maximaCalificacion} sobre 10`);
+    return maximaCalificacion;
+
 }
 
 obtenerMejorCalificacion(calificaciones);
@@ -93,6 +95,7 @@ obtenerMejorCalificacion(calificaciones);
 function obtenerPeorCalificacion (array){
     let menorCalificacion = Math.min(...array);
     console.log(`2.4) La peor calificación en el curso fue de ${menorCalificacion} sobre 10`);
+    return menorCalificacion;
 }
 
 obtenerPeorCalificacion(calificaciones);
@@ -157,15 +160,103 @@ function filtrarEstudiantesAprobados(promedioMinimo) {
 
 filtrarEstudiantesAprobados(promedioMinimo)
 
-// ? -------------------------------------------- EJERCICIO 2.8 - ordenarEstudiantesporNombre
+// ? ---------------------------------------- EJERCICIO 2.8 - ordenarEstudiantesporNombre
 
 function ordenarEstudiantesporNombre (){
     estudiantes.sort(function(a,b){
-        return a-b;
+        if (a.nombre < b.nombre) {
+            return -1
+        }
+
+        if (a.nombre < b.nombre) {
+            return 1
+        }
+        return 0;
     })
-    console.log("Lista de Alumnos Alfabeticamente" ,estudiantes);
+    console.log(" 2.8) Lista de Alumnos Alfabeticamente" ,estudiantes);
 }
 
 ordenarEstudiantesporNombre();
 
+// ? ------------------------------------------- EJERCICIO 2.9 - GenerarReporteIndividual
 
+function calcularPromedio(estudiantes) {
+    let sumaCalificaciones = estudiantes.reduce(function(acomulador, puntuacionActual){
+        return acomulador + puntuacionActual;
+    });
+    let promedio = Math.round(sumaCalificaciones / estudiantes.length);
+    return promedio;
+}
+
+
+function generarReporteIndividual(nombreEstudiante) {
+    let estudiante = estudiantes.find(function(alumno) {
+        return alumno.nombre === nombreEstudiante;
+    });
+
+    if (estudiante) {
+        let notas = estudiante.calificaciones;
+        let promedio = calcularPromedio(notas);
+        let mejor = obtenerMejorCalificacion(notas);
+        let peor = obtenerPeorCalificacion(notas);
+
+        console.log(`Nombre: ${estudiante.nombre}`);
+        console.log(`Calificaciones: ${notas}`);
+        console.log(`Promedio: ${promedio}`);
+        console.log(`Nota más alta: ${mejor}`);
+        console.log(`Nota más baja: ${peor}`);
+    } else {
+        console.log(`2.9) El estudiante ${nombreEstudiante} no fue encontrado en el sistema`);
+    }
+}
+
+generarReporteIndividual("Jose Andrade");
+
+// TODO -----------------------------EJERCICIO 3: Funcionalidad Principal -----------------
+
+
+
+function iniciarGestionCalificaciones() {
+    let continuar = true;
+
+    while (continuar) {
+        let opcion = prompt(
+            "MENÚ DE GESTIÓN DE CALIFICACIONES " + 
+            "\n1. Mostrar Estudiantes " +
+            "2. Agregar Calificación " +
+            "3. Generar Reporte Individual " +
+            "4. Salir" +
+            "Por favor, ingrese el número de la opción que desea: "
+        );
+
+        switch (opcion) {
+            case "1":
+                alert("Mostrando estudiantes... Revisa la consola.");
+                mostrarEstudiantes(estudiantes);
+                break;
+
+            case "2":
+                let nombreAgregar = prompt("Ingrese el nombre del estudiante:");
+                let nuevaNota = parseFloat(prompt("Ingrese la nueva calificación (0.0 a 10.0):"));
+                agregarCalificacion(nombreAgregar, nuevaNota);
+                break;
+
+            case "3":
+                let nombreReporte = prompt("Ingrese el nombre del estudiante:");
+                generarReporteIndividual(nombreReporte);
+                break;
+
+            case "4":
+                alert("Gracias por usar el sistema de gestión de calificaciones.");
+                continuar = false;
+                break;
+
+            default:
+                alert("Opción no válida. Por favor, ingrese una opción del 1 al 4.");
+        }
+    }
+}
+
+iniciarGestionCalificaciones()
+
+1
